@@ -2,7 +2,7 @@
     "name": "view-in-default-application",
     "displayName": "View in Default Application",
     "description": "Adds \"View in Default Application\" command for various files",
-    "version": "3.0.0",
+    "version": "3.2.0",
     "publisher": "seesharprun",
     "bugs": {
         "url": "https://github.com/seesharprun/Code-View-In-Default-Application-Extension/issues"
@@ -24,14 +24,19 @@
         "Other"
     ],
     "activationEvents": [
+        "onCommand:extension.viewInBrowser",
         "onCommand:extension.viewInDefaultApplication"
     ],
     "main": "./out/src/extension",
     "contributes": {
         "commands": [
             {
+                "command": "extension.viewInBrowser",
+                "title": "View In Browser"
+            },
+            {
                 "command": "extension.viewInDefaultApplication",
-                "title": "View In Test"
+                "title": "View In Default Application"
             }
         ],
         "configuration": {
@@ -52,7 +57,7 @@
         },
         "keybindings": [
             {
-                "command": "extension.viewInDefaultApplication",
+                "command": "extension.viewInBrowser",
                 "key": "ctrl+k ctrl+b",
                 "mac": "cmd+k cmd+b",
                 "when": "editorTextFocus"
@@ -61,7 +66,7 @@
         "menus": {
             "explorer/context": [
                 {
-                    "command": "extension.viewInDefaultApplication",
+                    "command": "extension.viewInBrowser",
                     "group": "navigation@1"
                 }
             ]

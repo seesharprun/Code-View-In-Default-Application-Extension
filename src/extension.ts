@@ -35,12 +35,12 @@ function openFile(e: string, customBrowser: string) {
 
 // main code of the extension
 export function activate(context: vscode.ExtensionContext) {
-    let disposable = vscode.commands.registerCommand('extension.viewInDefaultApplication', (e: vscode.Uri) => {
+    let disposable = vscode.commands.registerCommand('extension.viewInBrowser', (e: vscode.Uri) => {
         let config = vscode.workspace.getConfiguration('view-in-browser');
         let customBrowser = config.get<string>("customBrowser");
 
         // if there is Uri it means the file was selected in the explorer.
-        if (e.path) {
+        if (e && e.path) {
             openFile(e.fsPath, customBrowser);
         }
         else {
@@ -56,6 +56,28 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     context.subscriptions.push(disposable);
+
+    let disposableTwo = vscode.commands.registerCommand('extension.viewInDefaultApplication', (e: vscode.Uri) => {
+        let config = vscode.workspace.getConfiguration('view-in-browser');
+        let customBrowser = config.get<string>("customBrowser");
+
+        // if there is Uri it means the file was selected in the explorer.
+        if (e && e.path) {
+            openFile(e.fsPath, customBrowser);
+        }
+        else {
+            let editor = vscode.window.activeTextEditor;
+            if (!editor) {
+                vscode.window.showWarningMessage('No active text editor found!');
+                return;
+            }
+
+            const file = editor.document.fileName;
+            openFile(`file:///${file}`, customBrowser);
+        }
+    });
+
+    context.subscriptions.push(disposableTwo);
 }
 
 export function deactivate() {
