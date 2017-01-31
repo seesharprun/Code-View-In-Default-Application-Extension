@@ -2,7 +2,7 @@
     "name": "view-in-default-application",
     "displayName": "View in Default Application",
     "description": "Adds \"View in Default Application\" command for various files",
-    "version": "3.2.0",
+    "version": "3.3.0",
     "publisher": "seesharprun",
     "bugs": {
         "url": "https://github.com/seesharprun/Code-View-In-Default-Application-Extension/issues"
