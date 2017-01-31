@@ -35,7 +35,7 @@ function openFile(e: string, customBrowser: string) {
 
 // main code of the extension
 export function activate(context: vscode.ExtensionContext) {
-    let disposable = vscode.commands.registerCommand('extension.viewInBrowser', (e: vscode.Uri) => {
+    let disposable = vscode.commands.registerCommand('extension.viewInDefaultApplication', (e: vscode.Uri) => {
         let config = vscode.workspace.getConfiguration('view-in-browser');
         let customBrowser = config.get<string>("customBrowser");
 
